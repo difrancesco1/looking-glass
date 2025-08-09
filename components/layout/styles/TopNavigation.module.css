@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.475rem 4rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid #4c4c4c;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: #ededed;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon {
+    cursor: pointer;
+    scale: 0.75;
+    color: #ededed;
+}
+
+.heroInput {
+    width: 70%;
+    border-radius: 15px;
+}
