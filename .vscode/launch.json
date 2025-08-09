@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Frontend",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/ga",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "dev"],
+            "console": "integratedTerminal",
+            "env": {
+                "NEXT_PUBLIC_API_URL": "http://localhost:8000"
+            }
+        }
+    ]
+}
