@@ -10,8 +10,30 @@
             "runtimeArgs": ["run", "dev"],
             "console": "integratedTerminal",
             "env": {
-                "NEXT_PUBLIC_API_URL": "http://localhost:8000"
+                "NEXT_PUBLIC_API_BASE_URL": "http://localhost:8080"
             }
+        },
+        {
+            "name": "Backend",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/main.py",
+            "cwd": "${workspaceFolder}/backend",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/backend",
+                "DEBUG": "true",
+                "API_PORT": "8080"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack",
+            "configurations": ["Frontend", "Backend"],
+            "stopAll": true
         }
     ]
 }

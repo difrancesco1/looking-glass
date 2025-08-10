@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./styles/TopNavigation.module.css";
-import BedtimeRoundedIcon from '@mui/icons-material/BedtimeRounded';
+import BedtimeRoundedIcon from "@mui/icons-material/BedtimeRounded";
 
 export default function TopNavigation() {
   return (

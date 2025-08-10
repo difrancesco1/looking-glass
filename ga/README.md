@@ -36,3 +36,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+```bash
+uvicorn ai_tutor.main:app --reload --port 8080
+```
+
+Then start the DB (make sure docker desktop is running):
+Idontgive3ducks (joshpswd)
+
+```bash
+docker run -d \
+  --name looking_glass \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=Idontgive3ducks \
+  -e POSTGRES_DB=looking_glass \
+  -p 5433:5432 \
+  -v ai_tutor_postgres_data:/var/lib/postgresql/data \
+  ankane/pgvector
+```

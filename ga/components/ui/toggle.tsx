@@ -1,28 +1,35 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface ToggleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  options: [string, string]
-  value: string
-  onChange: (value: string) => void
-  className?: string
+interface ToggleProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  options: [string, string];
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
 }
 
-function Toggle({ options, value, onChange, className, ...props }: ToggleProps) {
-  const [option1, option2] = options
+function Toggle({
+  options,
+  value,
+  onChange,
+  className,
+  ...props
+}: ToggleProps) {
+  const [option1, option2] = options;
 
   return (
     <div
       className={cn(
         "relative flex h-10 w-fit rounded-full border border-[var(--input-border)] bg-[var(--input-background)] p-1",
-        className
+        className,
       )}
       {...props}
     >
       <div
         className="absolute w-[calc(50%-4px)] h-[calc(80%)] rounded-3xl bg-white opacity-80 transition-transform duration-200"
         style={{
-          transform: `translateX(${value === option2 ? "calc(100% + 1px)" : "0px"})`
+          transform: `translateX(${value === option2 ? "calc(100% + 1px)" : "0px"})`,
         }}
       />
       {[option1, option2].map((option) => (
@@ -33,14 +40,14 @@ function Toggle({ options, value, onChange, className, ...props }: ToggleProps) 
             "relative z-10 px-4 py-1 text-sm transition-colors",
             value === option
               ? "text-[var(--input-background)]"
-              : "text-[var(--input-text)]"
+              : "text-[var(--input-text)]",
           )}
         >
           {option}
         </button>
       ))}
     </div>
-  )
+  );
 }
 
-export { Toggle }
+export { Toggle };
