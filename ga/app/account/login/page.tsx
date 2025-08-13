@@ -1,7 +1,5 @@
+import AccountForm from "@/components/ui/AccountForm";
+
 export default function Login() {
-  return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  );
+  return <AccountForm type="login" />;
 }

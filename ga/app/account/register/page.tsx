@@ -1,9 +1,5 @@
-import styles from "../account.module.css";
+import AccountForm from "@/components/ui/AccountForm";
 
 export default function Register() {
-  return (
-    <div className={styles.page}>
-      <div className={styles.registerContainer}></div>
-    </div>
-  );
+  return <AccountForm type="register" />;
 }
