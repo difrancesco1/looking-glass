@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from fastapi.security import OAuth2PasswordBearer
+
 # Project information
 PROJECT_NAME = "Grand Archive Looking Glass API"
 VERSION = "1.0.0"
@@ -26,7 +28,6 @@ if production_origins := os.getenv("ALLOWED_ORIGINS"):
     ALLOWED_ORIGINS.extend(production_origins.split(","))
 
 # Database Configuration
-# Default to PostgreSQL for Railway deployment, fallback to SQLite for local dev
 DATABASE_URL = os.getenv(
     "DATABASE_URL", "postgresql://postgres:Idontgive3ducks@localhost:5433/looking_glass"
 )
@@ -35,6 +36,14 @@ DATABASE_URL = os.getenv(
 GRAND_ARCHIVE_API_BASE_URL = os.getenv(
     "GRAND_ARCHIVE_API_BASE_URL", "https://api.gatcg.com"
 )
+
+# JWT Authentication Configuration
+SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here-change-in-production")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
+
+# OAuth2 Configuration
+OAUTH2_SCHEME = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 # Logging Configuration
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")

@@ -17,18 +17,12 @@ logging.getLogger("sqlalchemy.pool").setLevel(logging.WARNING)
 logging.getLogger("sqlalchemy.orm").setLevel(logging.WARNING)
 
 try:
-    # Configure connect_args based on database type
-    connect_args = {}
-    if DATABASE_URL.startswith("postgresql"):
-        connect_args = {"connect_timeout": 10}
-    # SQLite doesn't support connect_timeout, so we leave connect_args empty
-
     engine = create_engine(
         DATABASE_URL,
         pool_pre_ping=True,  # Enable connection health checks
         pool_size=5,  # Maximum number of connections to keep in the pool
         max_overflow=10,  # Max connections beyond pool_size
-        connect_args=connect_args,
+        connect_args={"connect_timeout": 10},
         # Disable echo to prevent verbose SQL logging
         echo=False,
     )
@@ -51,8 +45,7 @@ except Exception as e:
     engine = create_engine(
         "sqlite:///./error.db",
         poolclass=NullPool,
-        # SQLite doesn't support connect_timeout
-        connect_args={},
+        connect_args={"connect_timeout": 1},
     )
 
 # Create a session factory
