@@ -13,8 +13,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from starlette.responses import Response
 
 from looking_glass.api.card_search.card_search import card_search_router
+from looking_glass.api.user.user import users_router
 from looking_glass.config import DEBUG
+from looking_glass.config import ENVIRONMENT
 from looking_glass.config import PROJECT_NAME
+from looking_glass.config import VERSION
 from looking_glass.db.engine import engine
 from looking_glass.db.engine import get_db_session
 from looking_glass.logger import setup_logger
@@ -146,11 +149,28 @@ def list_routes():
 # Determine if running in Railway environment
 railway_env = "RAILWAY_SERVICE_NAME" in os.environ
 
+app.include_router(users_router, prefix="/api/users")
 app.include_router(card_search_router, prefix="/api/card-search")
 
+# Initialize database session
 get_db_session()
 
+# Server startup
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    logger.info(f"Starting {PROJECT_NAME} v{VERSION}")
+    logger.info(f"Debug mode: {DEBUG}")
+    logger.info(f"Environment: {ENVIRONMENT}")
+
+    # Import configuration values
+    from looking_glass.config import API_HOST, API_PORT
+
+    # Start the server
+    uvicorn.run(
+        "main:app",
+        host=API_HOST,
+        port=API_PORT,
+        reload=DEBUG,  # Enable auto-reload in debug mode
+        log_level="info" if not DEBUG else "debug",
+    )
