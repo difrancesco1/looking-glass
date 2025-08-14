@@ -12,7 +12,7 @@ export default function TopNavigation() {
         <h1 className={styles.title}>Looking Glass</h1>
         <div className={styles.menu}>
           <Link href="/">Search</Link>
-          <Link href="/about">Decks</Link>
+          <Link href="/builder">Deck Builder</Link>
         </div>
       </div>
       <div className={styles.right}>
